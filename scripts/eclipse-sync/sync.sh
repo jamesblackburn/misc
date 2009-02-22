@@ -9,7 +9,10 @@ for DIR in `ls`; do
     ./$DIR-cvsimport.sh
     pushd $DIR
     # Pushing tracked branch to github CVS_HEAD
-    git push github CVS_HEAD
+    for  BRANCH in `cat ../$DIR-branch` ; do
+       echo Synching: $BRANCH
+       git push github $BRANCH
+    done
     popd
     echo
   fi 
